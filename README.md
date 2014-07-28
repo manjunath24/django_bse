@@ -1,4 +1,4 @@
 django_bse
 ==========
 
-A django app for BSE(India)
+A django app for BSE(Bombay Stock Exchange)
