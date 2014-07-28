@@ -9,8 +9,6 @@ from watchdog.events import LoggingEventHandler
 from bse_app.models import Company, CompanyDetail, FileStatus
 
 
-
-
 def parse_csv_file(file_path):
     file_name = file_path.split('/')[-1]
     date = file_path.split('/')[-1][2:8]
