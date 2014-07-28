@@ -24,3 +24,11 @@ class CompanyDetail(models.Model):
     def __unicode__(self):
         return self.date
 
+
+class FileStatus(models.Model):
+    file_name = models.CharField(max_length=100)
+    is_parsed = models.BooleanField()
+
+    def __unicode__(self):
+        return self.file_name
+

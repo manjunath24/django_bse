@@ -14,6 +14,6 @@ def get_data(request, companycode=None, day=None, month=None, year=None):
         date = '%s%s%s' % (day, month, year)
         company_details = list(
             company.companydetail_set.filter(date=date).values(
-                'opening', 'closing', 'high', 'low', 'company__companyname',))
+                'opening', 'closing', 'company__companyname',))
         data = json.dumps(company_details, indent=2)
     return HttpResponse(data, content_type='application/json')
