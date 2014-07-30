@@ -1,1 +1,0 @@
-python manage.py dump_csv /app/bse_app/management/commands/csvs/
