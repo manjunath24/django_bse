@@ -7,11 +7,17 @@ argh==0.25.0
 argparse==1.2.1
 billiard==3.3.0.18
 distribute==0.6.34
+dj-database-url==0.3.0
+dj-static==0.0.6
 django-graphos==0.0.2a0
+django-toolbelt==0.0.1
+gunicorn==19.1.0
 ipdb==0.8
 ipython==2.1.0
 kombu==3.0.21
 pathtools==0.1.2
+psycopg2==2.5.3
 pytz==2014.4
+static3==0.5.1
 watchdog==0.8.0
 wsgiref==0.1.2
