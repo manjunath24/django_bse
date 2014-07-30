@@ -37,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bse_app',
+
+    'graphos',
 )
 
 MIDDLEWARE_CLASSES = (

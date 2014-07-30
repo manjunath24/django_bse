@@ -22,7 +22,11 @@ class Command(BaseCommand):
         pull_from = "http://www.bseindia.com/download/BhavCopy/Equity/EQ%s_CSV.ZIP" % (date)
         push_to = "downloads/EQ%s.zip" % (date)
         url_obj = urllib.URLopener()
-        url_obj.retrieve(pull_from, push_to)
-        zf = zipfile.ZipFile(push_to, 'r')
-        zf.extractall('downloads/')
-        shutil.move('downloads/EQ%s.CSV' % (date), 'bse_app/management/commands/csvs/')
+        try:
+            url_obj.retrieve(pull_from, push_to)
+        except IOError:
+            print 'File not found on %s' % date
+        else:
+            zf = zipfile.ZipFile(push_to, 'r')
+            zf.extractall('downloads/')
+            shutil.move('downloads/EQ%s.CSV' % (date), 'bse_app/management/commands/csvs/')
