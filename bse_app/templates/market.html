@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div style="float:right">As on date: {{ records.0.date }}</div>
+
+Order by:
+<select onchange="order_by(this.val)" id="selectOpt">
+    <option value="net_turnover">
+        Top Turnovers
+    </option>
+    <option value="toptrades" {% if top_trade %} selected {% endif %} >
+        Top Trades
+    </option>
+</select>
+
+<hr>
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>
+            SC Code
+        </th>
+        <th>
+            Company Name
+        </th>
+        <th>
+            Open
+        </th>
+        <th>
+            High
+        </th>
+        <th>
+            Low
+        </th>
+        <th>
+            Previous Close
+        </th>
+        <th>
+            Close
+        </th>
+        <th>
+            No of Shares Traded
+        </th>
+        <th>
+            Total Turnover(Rs.Lac)
+        </th>
+    <tr>
+    </thead>
+
+    <tbody>
+    {% for record in records %}
+    {% if record.prev_close > record.closing %}
+    <tr class="warning">
+    {% endif %}
+    {% if record.prev_close < record.closing %}
+    <tr class="success">
+    {% endif %}
+        <td>
+            {{ record.company.sc_code }}
+        </td>
+        <td>
+            {{ record.company }}
+        </td>
+        <td>
+            {{ record.opening }}
+        </td>
+        <td>
+            {{ record.high }}
+        </td>
+        <td>
+            {{ record.low }}
+        </td>
+        <td>
+            {{ record.prev_close }}
+        </td>
+        <td>
+            {{ record.closing }}
+        </td>
+        <td>
+            {{ record.no_of_shares }}
+        </td>
+        <td>
+            {{ record.net_turnover }}
+        </td>
+        <td>
+            {% if record.prev_close > record.closing %}
+            <img src="{% static 'images/down.png' %}" width="20" height="20" />
+            {% endif %}
+            {% if record.prev_close < record.closing %}
+            <img src="{% static 'images/up.png' %}" width="20" height="20" />
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if records.has_previous %}
+            <a href="?page={{ records.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in records.paginator.page_range %}
+              {% ifequal num records.number %}
+                <span class="current"><b>{{ num }}</b></span>
+              {% else %}
+                <a href="?page={{ num }}"> {{ num }}</a>
+              {% endifequal %}
+        {% endfor %}
+
+        {% if records.has_next %}
+            <a href="?page={{ records.next_page_number }}">Next</a>
+        {% endif %}
+    </span>
+</div>
+
+<script>
+   function order_by(){
+      var myselect = document.getElementById("selectOpt");
+      val = myselect.options[myselect.selectedIndex].value;
+      if(val == "toptrades"){
+        window.location = "/marketwatch/toptrades/"
+      }
+      else if(val == "net_turnover"){
+        window.location = "/marketwatch/"
+      }
+}
+
+</script>
+
+{% endblock %}

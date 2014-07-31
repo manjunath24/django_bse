@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+<script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+
+<form action="{% url 'graph' %}" method="get">
+    {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Generate">
+</form>
+
+{% if chart %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+
+    google.load("visualization", "1", {packages:["corechart", "treemap"]});
+
+</script>
+
+{{ chart.as_html }}
+
+{% endif %}
+
+<!-- Date Picker -->
+            <script type="text/javascript">
+               $(function() {
+                    $( "#id_start_date" ).datepicker();
+                    $( "#id_end_date" ).datepicker();
+                });
+               </script>
+      <!-- Date Picker -->
+
+{% endblock %}

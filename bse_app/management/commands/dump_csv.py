@@ -29,6 +29,10 @@ def parse_csv_file(file_path):
                 high=row[5],
                 low=row[6],
                 closing=row[7],
+                prev_close = row[9],
+                no_trades = row[10],
+                no_of_shares=row[11],
+                net_turnover=row[12],
                 date=date)
     FileStatus.objects.create(file_name=file_name, is_parsed=True)
     print 'Done ....'

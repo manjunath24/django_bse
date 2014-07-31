@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <title>{% block title %} Django BSE {% endblock %}</title>
+    </head>
+
+    <body>
+       <div class="container">
+	       <h1><a href="">Django BSE</a></h1>
+         <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li><a href="">Home</a></li>
+                <li><a href="{% url 'marketwatch' %}">Market Watch</a></li>
+                <li><a href="{% url 'graph' %}">Graph</a></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+           <hr>
+	        {% block content %}
+	        {% endblock %}
+        </div>
+	</body>
+</html>

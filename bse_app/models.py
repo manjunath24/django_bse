@@ -12,11 +12,15 @@ class Company(models.Model):
 
 class CompanyDetail(models.Model):
     company = models.ForeignKey(Company)
-    opening = models.FloatField(max_length=750)
-    high = models.CharField(max_length=750)
-    low = models.CharField(max_length=750)
-    closing = models.FloatField(max_length=750)
-    date = models.CharField(max_length=750)
+    opening = models.FloatField(max_length=100)
+    high = models.CharField(max_length=100)
+    low = models.CharField(max_length=100)
+    closing = models.FloatField(max_length=100)
+    prev_close = models.FloatField(max_length=100)
+    no_trades = models.FloatField(max_length=100)
+    no_of_shares = models.FloatField(max_length=100)
+    net_turnover = models.FloatField(max_length=100)
+    date = models.CharField(max_length=100)
 
     class Meta:
         unique_together = ('company', 'date')

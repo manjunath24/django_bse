@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <script type="text/javascript">
@@ -7,3 +11,5 @@
 </script>
 
 {{ chart.as_html }}
+
+{% endblock %}
